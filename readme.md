@@ -8,7 +8,7 @@ This program generates a synthetic dataset that imitates real data
 
 ## Roadmap
 
-- [ ] `class Row`
+- [x] `class Row`
 - [ ] `class Row` limits
 - [ ] `class Dataset`
 - [ ] `class Dataset` limits
@@ -20,7 +20,7 @@ This program generates a synthetic dataset that imitates real data
 | №    | Property                | Sample                   | Limits                                 |
 |------|-------------------------|--------------------------|----------------------------------------|
 |      |                         |                          |                                        |
-| `01` | `name`                  | `Иванов Иван Иванович`   | `Словарь` `*`                          |
+| `01` | `fio`                   | `Иванов Иван Иванович`   | `Словарь` `*`                          |
 |      |                         |                          |                                        |
 | `02` | `passport`              | `1234 123456`            | `* ID` `RUS/BEL/KAZ`                   |
 | `03` | `snils`                 | `123-456-789 12`         | `* ID`                                 |
@@ -46,3 +46,25 @@ This program generates a synthetic dataset that imitates real data
 Не менее `50 000` строк  
 Пациенты могут повторяться  
 Карты могут повторяться `(1-5)`  
+
+
+## Links
+
+data  
+`└──` male  
+`│    ├──` [name.txt](https://sevabashirov.livejournal.com/655717.html)  
+`│    └──` [surname.txt](http://www.rusinkg.ru/russkij-yazyk/article/42-russkij-yazyk-v-mire/6164-samye-rasprostranennye-russkie-familii-rejting-500)  
+`├──` female  
+`│    ├──` [name.txt](https://sevabashirov.livejournal.com/655717.html) 
+`│    └──` surname.txt
+
+
+```
+parser: data/male/surname.txt -> data/female/surname.txt + data/male/surname_tmp.txt
+
+если (surname[:2] == "ов" | "ев" | "ин"):
+    surname+"a" -> female/surname.txt
+иначе:
+    surname -> male/surname_tmp.txt
+    # обработаю вручную
+```
